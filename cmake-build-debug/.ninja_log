@@ -1,0 +1,6 @@
+# ninja log v5
+13	1714	1650792709939044962	CMakeFiles/promi.dir/main.cpp.o	7a658710179443e0
+8	308	1652114953781697586	promi	ef80cfe8ea16af88
+10	2963	1652114772223805341	CMakeFiles/promi.dir/parser/promiVisitor.cpp.o	a60807df838dad05
+8	3378	1652114772646442110	CMakeFiles/promi.dir/parser/promiParser.cpp.o	a2055c4e62d0c5c3
+4	3250	1652114772514304766	CMakeFiles/promi.dir/parser/promiLexer.cpp.o	7f9984deeaa706ae

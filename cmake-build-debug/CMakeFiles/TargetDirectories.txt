@@ -1,0 +1,3 @@
+/Users/habib/promilang/promi/cmake-build-debug/CMakeFiles/promi.dir
+/Users/habib/promilang/promi/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/habib/promilang/promi/cmake-build-debug/CMakeFiles/rebuild_cache.dir

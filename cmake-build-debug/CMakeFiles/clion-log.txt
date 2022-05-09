@@ -1,0 +1,6 @@
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja -S /Users/habib/promilang/promi -B /Users/habib/promilang/promi/cmake-build-debug
+-- Found antlr4cpp libs:  and includes:  
+-- lex/parse file generated successfully.
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/habib/promilang/promi/cmake-build-debug
