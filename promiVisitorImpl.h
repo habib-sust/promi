@@ -9,6 +9,8 @@
 
 class promiVisitorImpl: public promiBaseVisitor {
     antlrcpp::Any visitPrimitiveExpression(promiParser::PrimitiveExpressionContext *ctx) override;
+
+    antlrcpp::Any visitAddDivExpression(promiParser::AddDivExpressionContext *ctx) override;
 };
 
 

@@ -1,9 +1,9 @@
 grammar promi;
 
-program:  (expression EOL)* ;
+program:  (expression EOL)* EOF;
 
 expression:	expression ('*'|'/') expression  #mulSubExpression
-    |	expression ('+'|'-') expression      #addDivExpression
+    |	left=expression op=('+'|'-') right=expression      #addDivExpression
     |	INT                                  #primitiveExpression
     |	'(' expression ')'                   #parenEnclosedExpression
     ;
