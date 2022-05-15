@@ -1,9 +1,13 @@
 grammar promi;
-program:	(expression NEWLINE)* ;
+
+program:  (expression EOL)* ;
+
 expression:	expression ('*'|'/') expression
     |	expression ('+'|'-') expression
     |	INT
     |	'(' expression ')'
     ;
-NEWLINE : [\r\n]+ ;
-INT     : [0-9]+ ;
+
+EOL : ';' ;
+INT : [0-9]+ ;
+WHITESPACE : [ \t\r\n] ->skip ;

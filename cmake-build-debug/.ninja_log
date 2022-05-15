@@ -1,6 +1,13 @@
 # ninja log v5
-13	1714	1650792709939044962	CMakeFiles/promi.dir/main.cpp.o	7a658710179443e0
-8	308	1652114953781697586	promi	ef80cfe8ea16af88
-10	2963	1652114772223805341	CMakeFiles/promi.dir/parser/promiVisitor.cpp.o	a60807df838dad05
-8	3378	1652114772646442110	CMakeFiles/promi.dir/parser/promiParser.cpp.o	a2055c4e62d0c5c3
+6	1536	1652559761728340667	CMakeFiles/promi.dir/main.cpp.o	7a658710179443e0
+1536	1630	1652559761827461019	promi	64a3983749467ba6
+8	8906	1652558657027298846	CMakeFiles/promi.dir/parser/promiVisitor.cpp.o	a60807df838dad05
+6	10089	1652559414486529617	CMakeFiles/promi.dir/parser/promiParser.cpp.o	a2055c4e62d0c5c3
+1	3739	1652560527719370437	build.ninja	36414e06496a6618
 4	3250	1652114772514304766	CMakeFiles/promi.dir/parser/promiLexer.cpp.o	7f9984deeaa706ae
+22	2729	1652560559316853548	CMakeFiles/promi.dir/parser/promiVisitor.cpp.o	a60807df838dad05
+20	3037	1652560559625073284	CMakeFiles/promi.dir/parser/promiLexer.cpp.o	7f9984deeaa706ae
+21	3205	1652560559767551795	CMakeFiles/promi.dir/parser/promiParser.cpp.o	a2055c4e62d0c5c3
+3205	3376	1652560560000539905	promi	ef80cfe8ea16af88
+3	1777	1652560617570976497	CMakeFiles/promi.dir/main.cpp.o	7a658710179443e0
+1777	1953	1652560617746328089	promi	ef80cfe8ea16af88

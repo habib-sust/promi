@@ -12,12 +12,12 @@
 class  promiParser : public antlr4::Parser {
 public:
   enum {
-    T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, NEWLINE = 7, 
-    INT = 8
+    T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, EOL = 7, 
+    INT = 8, WHITESPACE = 9
   };
 
   enum {
-    RuleProg = 0, RuleExpr = 1
+    RuleProgram = 0, RuleExpression = 1
   };
 
   explicit promiParser(antlr4::TokenStream *input);
@@ -30,43 +30,43 @@ public:
   virtual antlr4::dfa::Vocabulary& getVocabulary() const override;
 
 
-  class ProgContext;
-  class ExprContext; 
+  class ProgramContext;
+  class ExpressionContext; 
 
-  class  ProgContext : public antlr4::ParserRuleContext {
+  class  ProgramContext : public antlr4::ParserRuleContext {
   public:
-    ProgContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    ProgramContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    std::vector<ExprContext *> expr();
-    ExprContext* expr(size_t i);
-    std::vector<antlr4::tree::TerminalNode *> NEWLINE();
-    antlr4::tree::TerminalNode* NEWLINE(size_t i);
+    std::vector<ExpressionContext *> expression();
+    ExpressionContext* expression(size_t i);
+    std::vector<antlr4::tree::TerminalNode *> EOL();
+    antlr4::tree::TerminalNode* EOL(size_t i);
 
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
    
   };
 
-  ProgContext* prog();
+  ProgramContext* program();
 
-  class  ExprContext : public antlr4::ParserRuleContext {
+  class  ExpressionContext : public antlr4::ParserRuleContext {
   public:
-    ExprContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    ExpressionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *INT();
-    std::vector<ExprContext *> expr();
-    ExprContext* expr(size_t i);
+    std::vector<ExpressionContext *> expression();
+    ExpressionContext* expression(size_t i);
 
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
    
   };
 
-  ExprContext* expr();
-  ExprContext* expr(int precedence);
+  ExpressionContext* expression();
+  ExpressionContext* expression(int precedence);
 
   virtual bool sempred(antlr4::RuleContext *_localctx, size_t ruleIndex, size_t predicateIndex) override;
-  bool exprSempred(ExprContext *_localctx, size_t predicateIndex);
+  bool expressionSempred(ExpressionContext *_localctx, size_t predicateIndex);
 
 private:
   static std::vector<antlr4::dfa::DFA> _decisionToDFA;

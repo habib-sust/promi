@@ -1,19 +1,17 @@
-cmake_minimum_required(VERSION 3.5)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
 project(promi)
 
 SET(CMAKE_CXX_STANDARD 14)
 
 find_package(antlr4-runtime REQUIRED)
 
-set(ANTLR4CPP_JAR_LOCATION ${PROJECT_SOURCE_DIR}/antlr/antlr-4.9.3-complete.jar)
+SET(ANTLR4CPP_JAR_LOCATION ${PROJECT_SOURCE_DIR}/antlr/antlr-4.9.3-complete.jar)
 
 include_directories(/usr/local/include/antlr4-runtime/ ${ANTLR4CPP_INCLUDE_DIRS})
-
 link_directories(${ANTLR4CPP_LIBS})
-
 message(STATUS "Found antlr4cpp libs: ${ANTLR4CPP_LIBS} and includes: ${ANTLR4CPP_INCLUDE_DIRS} ")
 
-execute_process(COMMAND java -jar ${ANTLR4CPP_JAR_LOCATION} -Dlanguage=Swift -o parser -no-listener -visitor promi.g4
+execute_process(COMMAND java -jar ${ANTLR4CPP_JAR_LOCATION} -Dlanguage=Cpp -o parser -no-listener -visitor promi.g4
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
         RESULT_VARIABLE antlr4_result
         OUTPUT_VARIABLE antlr4_output)

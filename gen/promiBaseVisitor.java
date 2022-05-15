@@ -1,5 +1,5 @@
-// Generated from promi.g4 by ANTLR 4.9.3
-import Antlr4
+// Generated from /Users/habib/promilang/promi/promi.g4 by ANTLR 4.10.1
+import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
  * This class provides an empty implementation of {@link promiVisitor},
@@ -9,19 +9,19 @@ import Antlr4
  * @param <T> The return type of the visit operation. Use {@link Void} for
  * operations with no return type.
  */
-open class promiBaseVisitor<T>: AbstractParseTreeVisitor<T> {
+public class promiBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements promiVisitor<T> {
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	open func visitProgram(_ ctx: promiParser.ProgramContext) -> T? { return visitChildren(ctx) }
+	@Override public T visitProgram(promiParser.ProgramContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	open func visitExpression(_ ctx: promiParser.ExpressionContext) -> T? { return visitChildren(ctx) }
+	@Override public T visitExpression(promiParser.ExpressionContext ctx) { return visitChildren(ctx); }
 }

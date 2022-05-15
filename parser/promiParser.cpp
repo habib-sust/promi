@@ -31,44 +31,44 @@ dfa::Vocabulary& promiParser::getVocabulary() const {
 }
 
 
-//----------------- ProgContext ------------------------------------------------------------------
+//----------------- ProgramContext ------------------------------------------------------------------
 
-promiParser::ProgContext::ProgContext(ParserRuleContext *parent, size_t invokingState)
+promiParser::ProgramContext::ProgramContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-std::vector<promiParser::ExprContext *> promiParser::ProgContext::expr() {
-  return getRuleContexts<promiParser::ExprContext>();
+std::vector<promiParser::ExpressionContext *> promiParser::ProgramContext::expression() {
+  return getRuleContexts<promiParser::ExpressionContext>();
 }
 
-promiParser::ExprContext* promiParser::ProgContext::expr(size_t i) {
-  return getRuleContext<promiParser::ExprContext>(i);
+promiParser::ExpressionContext* promiParser::ProgramContext::expression(size_t i) {
+  return getRuleContext<promiParser::ExpressionContext>(i);
 }
 
-std::vector<tree::TerminalNode *> promiParser::ProgContext::NEWLINE() {
-  return getTokens(promiParser::NEWLINE);
+std::vector<tree::TerminalNode *> promiParser::ProgramContext::EOL() {
+  return getTokens(promiParser::EOL);
 }
 
-tree::TerminalNode* promiParser::ProgContext::NEWLINE(size_t i) {
-  return getToken(promiParser::NEWLINE, i);
-}
-
-
-size_t promiParser::ProgContext::getRuleIndex() const {
-  return promiParser::RuleProg;
+tree::TerminalNode* promiParser::ProgramContext::EOL(size_t i) {
+  return getToken(promiParser::EOL, i);
 }
 
 
-antlrcpp::Any promiParser::ProgContext::accept(tree::ParseTreeVisitor *visitor) {
+size_t promiParser::ProgramContext::getRuleIndex() const {
+  return promiParser::RuleProgram;
+}
+
+
+antlrcpp::Any promiParser::ProgramContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<promiVisitor*>(visitor))
-    return parserVisitor->visitProg(this);
+    return parserVisitor->visitProgram(this);
   else
     return visitor->visitChildren(this);
 }
 
-promiParser::ProgContext* promiParser::prog() {
-  ProgContext *_localctx = _tracker.createInstance<ProgContext>(_ctx, getState());
-  enterRule(_localctx, 0, promiParser::RuleProg);
+promiParser::ProgramContext* promiParser::program() {
+  ProgramContext *_localctx = _tracker.createInstance<ProgramContext>(_ctx, getState());
+  enterRule(_localctx, 0, promiParser::RuleProgram);
   size_t _la = 0;
 
 #if __cplusplus > 201703L
@@ -87,9 +87,9 @@ promiParser::ProgContext* promiParser::prog() {
 
     || _la == promiParser::INT) {
       setState(4);
-      expr(0);
+      expression(0);
       setState(5);
-      match(promiParser::NEWLINE);
+      match(promiParser::EOL);
       setState(11);
       _errHandler->sync(this);
       _la = _input->LA(1);
@@ -105,50 +105,50 @@ promiParser::ProgContext* promiParser::prog() {
   return _localctx;
 }
 
-//----------------- ExprContext ------------------------------------------------------------------
+//----------------- ExpressionContext ------------------------------------------------------------------
 
-promiParser::ExprContext::ExprContext(ParserRuleContext *parent, size_t invokingState)
+promiParser::ExpressionContext::ExpressionContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* promiParser::ExprContext::INT() {
+tree::TerminalNode* promiParser::ExpressionContext::INT() {
   return getToken(promiParser::INT, 0);
 }
 
-std::vector<promiParser::ExprContext *> promiParser::ExprContext::expr() {
-  return getRuleContexts<promiParser::ExprContext>();
+std::vector<promiParser::ExpressionContext *> promiParser::ExpressionContext::expression() {
+  return getRuleContexts<promiParser::ExpressionContext>();
 }
 
-promiParser::ExprContext* promiParser::ExprContext::expr(size_t i) {
-  return getRuleContext<promiParser::ExprContext>(i);
-}
-
-
-size_t promiParser::ExprContext::getRuleIndex() const {
-  return promiParser::RuleExpr;
+promiParser::ExpressionContext* promiParser::ExpressionContext::expression(size_t i) {
+  return getRuleContext<promiParser::ExpressionContext>(i);
 }
 
 
-antlrcpp::Any promiParser::ExprContext::accept(tree::ParseTreeVisitor *visitor) {
+size_t promiParser::ExpressionContext::getRuleIndex() const {
+  return promiParser::RuleExpression;
+}
+
+
+antlrcpp::Any promiParser::ExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<promiVisitor*>(visitor))
-    return parserVisitor->visitExpr(this);
+    return parserVisitor->visitExpression(this);
   else
     return visitor->visitChildren(this);
 }
 
 
-promiParser::ExprContext* promiParser::expr() {
-   return expr(0);
+promiParser::ExpressionContext* promiParser::expression() {
+   return expression(0);
 }
 
-promiParser::ExprContext* promiParser::expr(int precedence) {
+promiParser::ExpressionContext* promiParser::expression(int precedence) {
   ParserRuleContext *parentContext = _ctx;
   size_t parentState = getState();
-  promiParser::ExprContext *_localctx = _tracker.createInstance<ExprContext>(_ctx, parentState);
-  promiParser::ExprContext *previousContext = _localctx;
+  promiParser::ExpressionContext *_localctx = _tracker.createInstance<ExpressionContext>(_ctx, parentState);
+  promiParser::ExpressionContext *previousContext = _localctx;
   (void)previousContext; // Silence compiler, in case the context is not used by generated code.
   size_t startState = 2;
-  enterRecursionRule(_localctx, 2, promiParser::RuleExpr, precedence);
+  enterRecursionRule(_localctx, 2, promiParser::RuleExpression, precedence);
 
     size_t _la = 0;
 
@@ -175,7 +175,7 @@ promiParser::ExprContext* promiParser::expr(int precedence) {
         setState(14);
         match(promiParser::T__4);
         setState(15);
-        expr(0);
+        expression(0);
         setState(16);
         match(promiParser::T__5);
         break;
@@ -197,8 +197,8 @@ promiParser::ExprContext* promiParser::expr(int precedence) {
         _errHandler->sync(this);
         switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 2, _ctx)) {
         case 1: {
-          _localctx = _tracker.createInstance<ExprContext>(parentContext, parentState);
-          pushNewRecursionContext(_localctx, startState, RuleExpr);
+          _localctx = _tracker.createInstance<ExpressionContext>(parentContext, parentState);
+          pushNewRecursionContext(_localctx, startState, RuleExpression);
           setState(20);
 
           if (!(precpred(_ctx, 4))) throw FailedPredicateException(this, "precpred(_ctx, 4)");
@@ -214,13 +214,13 @@ promiParser::ExprContext* promiParser::expr(int precedence) {
             consume();
           }
           setState(22);
-          expr(5);
+          expression(5);
           break;
         }
 
         case 2: {
-          _localctx = _tracker.createInstance<ExprContext>(parentContext, parentState);
-          pushNewRecursionContext(_localctx, startState, RuleExpr);
+          _localctx = _tracker.createInstance<ExpressionContext>(parentContext, parentState);
+          pushNewRecursionContext(_localctx, startState, RuleExpression);
           setState(23);
 
           if (!(precpred(_ctx, 3))) throw FailedPredicateException(this, "precpred(_ctx, 3)");
@@ -236,7 +236,7 @@ promiParser::ExprContext* promiParser::expr(int precedence) {
             consume();
           }
           setState(25);
-          expr(4);
+          expression(4);
           break;
         }
 
@@ -259,7 +259,7 @@ promiParser::ExprContext* promiParser::expr(int precedence) {
 
 bool promiParser::sempred(RuleContext *context, size_t ruleIndex, size_t predicateIndex) {
   switch (ruleIndex) {
-    case 1: return exprSempred(antlrcpp::downCast<ExprContext *>(context), predicateIndex);
+    case 1: return expressionSempred(antlrcpp::downCast<ExpressionContext *>(context), predicateIndex);
 
   default:
     break;
@@ -267,7 +267,7 @@ bool promiParser::sempred(RuleContext *context, size_t ruleIndex, size_t predica
   return true;
 }
 
-bool promiParser::exprSempred(ExprContext *_localctx, size_t predicateIndex) {
+bool promiParser::expressionSempred(ExpressionContext *_localctx, size_t predicateIndex) {
   switch (predicateIndex) {
     case 0: return precpred(_ctx, 4);
     case 1: return precpred(_ctx, 3);
@@ -287,15 +287,15 @@ atn::ATN promiParser::_atn;
 std::vector<uint16_t> promiParser::_serializedATN;
 
 std::vector<std::string> promiParser::_ruleNames = {
-  "prog", "expr"
+  "program", "expression"
 };
 
 std::vector<std::string> promiParser::_literalNames = {
-  "", "'*'", "'/'", "'+'", "'-'", "'('", "')'"
+  "", "'*'", "'/'", "'+'", "'-'", "'('", "')'", "';'"
 };
 
 std::vector<std::string> promiParser::_symbolicNames = {
-  "", "", "", "", "", "", "", "NEWLINE", "INT"
+  "", "", "", "", "", "", "", "EOL", "INT", "WHITESPACE"
 };
 
 dfa::Vocabulary promiParser::_vocabulary(_literalNames, _symbolicNames);
@@ -318,7 +318,7 @@ promiParser::Initializer::Initializer() {
 
   static const uint16_t serializedATNSegment0[] = {
     0x3, 0x608b, 0xa72a, 0x8133, 0xb9ed, 0x417c, 0x3be7, 0x7786, 0x5964, 
-       0x3, 0xa, 0x22, 0x4, 0x2, 0x9, 0x2, 0x4, 0x3, 0x9, 0x3, 0x3, 0x2, 
+       0x3, 0xb, 0x22, 0x4, 0x2, 0x9, 0x2, 0x4, 0x3, 0x9, 0x3, 0x3, 0x2, 
        0x3, 0x2, 0x3, 0x2, 0x7, 0x2, 0xa, 0xa, 0x2, 0xc, 0x2, 0xe, 0x2, 
        0xd, 0xb, 0x2, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 
        0x3, 0x3, 0x5, 0x3, 0x15, 0xa, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 

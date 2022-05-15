@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <memory>
 #include "antlr4-runtime.h"
 #include "parser/promiLexer.h"
 #include "parser/promiParser.h"
@@ -15,7 +15,10 @@ int main(int argc, const char* argv[]) {
     CommonTokenStream tokens(&lexer);
     promiParser parser(&tokens);
 
-    tree::ParseTree *tree = parser.key();
+    tree::ParseTree *tree = parser.program();
+
+    std::unique_ptr<promiBaseVisitor> v = std::make_unique<promiBaseVisitor>();
+    v->visit(tree);
 
     return 0;
 }

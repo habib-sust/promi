@@ -15,11 +15,11 @@
 class  promiBaseVisitor : public promiVisitor {
 public:
 
-  virtual antlrcpp::Any visitProg(promiParser::ProgContext *ctx) override {
+  virtual antlrcpp::Any visitProgram(promiParser::ProgramContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitExpr(promiParser::ExprContext *ctx) override {
+  virtual antlrcpp::Any visitExpression(promiParser::ExpressionContext *ctx) override {
     return visitChildren(ctx);
   }
 

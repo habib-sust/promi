@@ -19,9 +19,9 @@ public:
   /**
    * Visit parse trees produced by promiParser.
    */
-    virtual antlrcpp::Any visitProg(promiParser::ProgContext *context) = 0;
+    virtual antlrcpp::Any visitProgram(promiParser::ProgramContext *context) = 0;
 
-    virtual antlrcpp::Any visitExpr(promiParser::ExprContext *context) = 0;
+    virtual antlrcpp::Any visitExpression(promiParser::ExpressionContext *context) = 0;
 
 
 };
