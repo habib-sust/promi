@@ -35,6 +35,10 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitComparisonExpression(promiParser::ComparisonExpressionContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitMulSubExpression(promiParser::MulSubExpressionContext *ctx) override {
     return visitChildren(ctx);
   }

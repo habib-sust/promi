@@ -29,6 +29,8 @@ public:
 
     virtual antlrcpp::Any visitAddDivExpression(promiParser::AddDivExpressionContext *context) = 0;
 
+    virtual antlrcpp::Any visitComparisonExpression(promiParser::ComparisonExpressionContext *context) = 0;
+
     virtual antlrcpp::Any visitMulSubExpression(promiParser::MulSubExpressionContext *context) = 0;
 
 

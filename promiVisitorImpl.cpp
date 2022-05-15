@@ -73,3 +73,36 @@ antlrcpp::Any promiVisitorImpl::visitMulSubExpression(promiParser::MulSubExpress
 antlrcpp::Any promiVisitorImpl::visitParenEnclosedExpression(promiParser::ParenEnclosedExpressionContext *ctx) {
     return visit(ctx->expr).as<int>();
 }
+
+antlrcpp::Any promiVisitorImpl::visitComparisonExpression(promiParser::ComparisonExpressionContext *ctx) {
+    auto left = visit(ctx->left).as<int>();
+    auto op = ctx->op->getType();
+    auto right = visit(ctx->right).as<int>();
+
+    bool result;
+
+    switch (op) {
+        case promiParser::EQ:
+            result = left == right;
+            break;
+        case promiParser::NE:
+            result = left != right;
+            break;
+        case promiParser::GT:
+            result = left > right;
+            break;
+        case promiParser::GTQ:
+            result = left >= right;
+            break;
+        case promiParser::LT:
+            result = left < right;
+            break;
+        case promiParser::LTQ:
+            result = left <= right;
+            break;
+        default:
+            assert(false);
+    }
+
+    return result;
+}

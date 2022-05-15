@@ -13,7 +13,8 @@ class  promiParser : public antlr4::Parser {
 public:
   enum {
     T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
-    EOL = 8, INT = 9, WHITESPACE = 10
+    EQ = 8, NE = 9, LT = 10, LTQ = 11, GT = 12, GTQ = 13, EOL = 14, INT = 15, 
+    WHITESPACE = 16
   };
 
   enum {
@@ -108,6 +109,25 @@ public:
     promiParser::ExpressionContext *right = nullptr;
     std::vector<ExpressionContext *> expression();
     ExpressionContext* expression(size_t i);
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  ComparisonExpressionContext : public ExpressionContext {
+  public:
+    ComparisonExpressionContext(ExpressionContext *ctx);
+
+    promiParser::ExpressionContext *left = nullptr;
+    antlr4::Token *op = nullptr;
+    promiParser::ExpressionContext *right = nullptr;
+    std::vector<ExpressionContext *> expression();
+    ExpressionContext* expression(size_t i);
+    antlr4::tree::TerminalNode *EQ();
+    antlr4::tree::TerminalNode *NE();
+    antlr4::tree::TerminalNode *LT();
+    antlr4::tree::TerminalNode *LTQ();
+    antlr4::tree::TerminalNode *GT();
+    antlr4::tree::TerminalNode *GTQ();
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
