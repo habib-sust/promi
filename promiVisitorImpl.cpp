@@ -7,7 +7,14 @@
 antlrcpp::Any promiVisitorImpl::visitPrimitiveExpression(promiParser::PrimitiveExpressionContext *ctx) {
     // TODO: Error handling
     // Add error handling to check if the value is `Int` or not
-    return stoi(ctx->getText());
+    auto type = ctx->prim->getType();
+
+    if (type == promiParser::INT) {
+        return stoi(ctx->getText());
+    } else if (type == promiParser::IDENTIFIER) {
+        auto var_name = ctx->prim->getText();
+        return scope_values_.at(var_name);
+    }
 }
 
 antlrcpp::Any promiVisitorImpl::visitAddDivExpression(promiParser::AddDivExpressionContext *ctx) {
@@ -115,4 +122,12 @@ antlrcpp::Any promiVisitorImpl::visitIfBlock(promiParser::IfBlockContext *ctx) {
     }
 
     return result;
+}
+
+antlrcpp::Any promiVisitorImpl::visitVariableExpression(promiParser::VariableExpressionContext *ctx) {
+    auto var = ctx->var->getText();
+    auto val = visit(ctx->val).as<int>();
+
+    scope_values_[var] = val;
+    return val;
 }

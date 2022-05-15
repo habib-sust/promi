@@ -1,9 +1,5 @@
+promi = monika = 83;
 
-if (23==23) {
+if (83==promi) {
  return 83+24;
-}
-
-
-if (23!=23) {
-    return 83-24;
 }

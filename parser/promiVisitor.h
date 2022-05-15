@@ -41,6 +41,8 @@ public:
 
     virtual antlrcpp::Any visitMulSubExpression(promiParser::MulSubExpressionContext *context) = 0;
 
+    virtual antlrcpp::Any visitVariableExpression(promiParser::VariableExpressionContext *context) = 0;
+
 
 };
 

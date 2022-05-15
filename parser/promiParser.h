@@ -13,8 +13,8 @@ class  promiParser : public antlr4::Parser {
 public:
   enum {
     T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
-    T__7 = 8, T__8 = 9, T__9 = 10, EQ = 11, NE = 12, LT = 13, LTQ = 14, 
-    GT = 15, GTQ = 16, EOL = 17, INT = 18, WHITESPACE = 19
+    T__7 = 8, T__8 = 9, T__9 = 10, T__10 = 11, EQ = 12, NE = 13, LT = 14, 
+    LTQ = 15, GT = 16, GTQ = 17, IDENTIFIER = 18, EOL = 19, INT = 20, WHITESPACE = 21
   };
 
   enum {
@@ -144,7 +144,9 @@ public:
   public:
     PrimitiveExpressionContext(ExpressionContext *ctx);
 
+    antlr4::Token *prim = nullptr;
     antlr4::tree::TerminalNode *INT();
+    antlr4::tree::TerminalNode *IDENTIFIER();
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
@@ -200,6 +202,18 @@ public:
     promiParser::ExpressionContext *right = nullptr;
     std::vector<ExpressionContext *> expression();
     ExpressionContext* expression(size_t i);
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  VariableExpressionContext : public ExpressionContext {
+  public:
+    VariableExpressionContext(ExpressionContext *ctx);
+
+    antlr4::Token *var = nullptr;
+    promiParser::ExpressionContext *val = nullptr;
+    antlr4::tree::TerminalNode *IDENTIFIER();
+    ExpressionContext *expression();
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };

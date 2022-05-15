@@ -59,6 +59,10 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitVariableExpression(promiParser::VariableExpressionContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
 
 };
 
