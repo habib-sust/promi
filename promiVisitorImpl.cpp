@@ -7,7 +7,6 @@
 antlrcpp::Any promiVisitorImpl::visitPrimitiveExpression(promiParser::PrimitiveExpressionContext *ctx) {
     // TODO: Error handling
     // Add error handling to check if the value is `Int` or not
-
     return stoi(ctx->getText());
 }
 
@@ -102,6 +101,17 @@ antlrcpp::Any promiVisitorImpl::visitComparisonExpression(promiParser::Compariso
             break;
         default:
             assert(false);
+    }
+
+    return result;
+}
+
+antlrcpp::Any promiVisitorImpl::visitIfBlock(promiParser::IfBlockContext *ctx) {
+    auto result = visit(ctx->cond).as<bool>();
+
+    if (result)
+    {
+        visit(ctx->blk);
     }
 
     return result;

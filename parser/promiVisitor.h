@@ -21,7 +21,15 @@ public:
    */
     virtual antlrcpp::Any visitProgram(promiParser::ProgramContext *context) = 0;
 
+    virtual antlrcpp::Any visitStatement(promiParser::StatementContext *context) = 0;
+
     virtual antlrcpp::Any visitReturnStatement(promiParser::ReturnStatementContext *context) = 0;
+
+    virtual antlrcpp::Any visitIfStatement(promiParser::IfStatementContext *context) = 0;
+
+    virtual antlrcpp::Any visitIfBlock(promiParser::IfBlockContext *context) = 0;
+
+    virtual antlrcpp::Any visitBlock(promiParser::BlockContext *context) = 0;
 
     virtual antlrcpp::Any visitPrimitiveExpression(promiParser::PrimitiveExpressionContext *context) = 0;
 

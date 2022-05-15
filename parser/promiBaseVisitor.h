@@ -19,7 +19,23 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitStatement(promiParser::StatementContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitReturnStatement(promiParser::ReturnStatementContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitIfStatement(promiParser::IfStatementContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitIfBlock(promiParser::IfBlockContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitBlock(promiParser::BlockContext *ctx) override {
     return visitChildren(ctx);
   }
 

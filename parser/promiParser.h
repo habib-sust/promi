@@ -13,12 +13,13 @@ class  promiParser : public antlr4::Parser {
 public:
   enum {
     T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
-    EQ = 8, NE = 9, LT = 10, LTQ = 11, GT = 12, GTQ = 13, EOL = 14, INT = 15, 
-    WHITESPACE = 16
+    T__7 = 8, T__8 = 9, T__9 = 10, EQ = 11, NE = 12, LT = 13, LTQ = 14, 
+    GT = 15, GTQ = 16, EOL = 17, INT = 18, WHITESPACE = 19
   };
 
   enum {
-    RuleProgram = 0, RuleReturnStatement = 1, RuleExpression = 2
+    RuleProgram = 0, RuleStatement = 1, RuleReturnStatement = 2, RuleIfStatement = 3, 
+    RuleIfBlock = 4, RuleBlock = 5, RuleExpression = 6
   };
 
   explicit promiParser(antlr4::TokenStream *input);
@@ -32,7 +33,11 @@ public:
 
 
   class ProgramContext;
+  class StatementContext;
   class ReturnStatementContext;
+  class IfStatementContext;
+  class IfBlockContext;
+  class BlockContext;
   class ExpressionContext; 
 
   class  ProgramContext : public antlr4::ParserRuleContext {
@@ -40,12 +45,8 @@ public:
     ProgramContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *EOF();
-    std::vector<ExpressionContext *> expression();
-    ExpressionContext* expression(size_t i);
-    std::vector<antlr4::tree::TerminalNode *> EOL();
-    antlr4::tree::TerminalNode* EOL(size_t i);
-    std::vector<ReturnStatementContext *> returnStatement();
-    ReturnStatementContext* returnStatement(size_t i);
+    std::vector<StatementContext *> statement();
+    StatementContext* statement(size_t i);
 
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
@@ -53,6 +54,22 @@ public:
   };
 
   ProgramContext* program();
+
+  class  StatementContext : public antlr4::ParserRuleContext {
+  public:
+    StatementContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    ExpressionContext *expression();
+    antlr4::tree::TerminalNode *EOL();
+    ReturnStatementContext *returnStatement();
+    IfStatementContext *ifStatement();
+
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  StatementContext* statement();
 
   class  ReturnStatementContext : public antlr4::ParserRuleContext {
   public:
@@ -67,6 +84,48 @@ public:
   };
 
   ReturnStatementContext* returnStatement();
+
+  class  IfStatementContext : public antlr4::ParserRuleContext {
+  public:
+    IfStatementContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    IfBlockContext *ifBlock();
+
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  IfStatementContext* ifStatement();
+
+  class  IfBlockContext : public antlr4::ParserRuleContext {
+  public:
+    promiParser::ExpressionContext *cond = nullptr;
+    promiParser::BlockContext *blk = nullptr;
+    IfBlockContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    ExpressionContext *expression();
+    BlockContext *block();
+
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  IfBlockContext* ifBlock();
+
+  class  BlockContext : public antlr4::ParserRuleContext {
+  public:
+    BlockContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    StatementContext *statement();
+
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  BlockContext* block();
 
   class  ExpressionContext : public antlr4::ParserRuleContext {
   public:
