@@ -26,6 +26,8 @@ class promiVisitorImpl: public promiBaseVisitor {
 
     antlrcpp::Any visitVariableExpression(promiParser::VariableExpressionContext *ctx) override;
 
+    antlrcpp::Any visitWhileStatement(promiParser::WhileStatementContext *ctx) override;
+
 private:
     int return_value_;
     std::map<std::string,int> scope_values_;

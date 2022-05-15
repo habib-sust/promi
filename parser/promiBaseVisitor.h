@@ -39,6 +39,10 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitWhileStatement(promiParser::WhileStatementContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitPrimitiveExpression(promiParser::PrimitiveExpressionContext *ctx) override {
     return visitChildren(ctx);
   }

@@ -131,3 +131,19 @@ antlrcpp::Any promiVisitorImpl::visitVariableExpression(promiParser::VariableExp
     scope_values_[var] = val;
     return val;
 }
+
+antlrcpp::Any promiVisitorImpl::visitWhileStatement(promiParser::WhileStatementContext *ctx) {
+    int count;
+    while(true) {
+        auto result = visit(ctx->cond).as<bool>();
+
+        if (result) {
+            visit(ctx->blk);
+            count++;
+        } else {
+            break;
+        }
+    }
+
+    return count;
+}

@@ -31,6 +31,8 @@ public:
 
     virtual antlrcpp::Any visitBlock(promiParser::BlockContext *context) = 0;
 
+    virtual antlrcpp::Any visitWhileStatement(promiParser::WhileStatementContext *context) = 0;
+
     virtual antlrcpp::Any visitPrimitiveExpression(promiParser::PrimitiveExpressionContext *context) = 0;
 
     virtual antlrcpp::Any visitParenEnclosedExpression(promiParser::ParenEnclosedExpressionContext *context) = 0;

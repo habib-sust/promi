@@ -13,13 +13,14 @@ class  promiParser : public antlr4::Parser {
 public:
   enum {
     T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
-    T__7 = 8, T__8 = 9, T__9 = 10, T__10 = 11, EQ = 12, NE = 13, LT = 14, 
-    LTQ = 15, GT = 16, GTQ = 17, IDENTIFIER = 18, EOL = 19, INT = 20, WHITESPACE = 21
+    T__7 = 8, T__8 = 9, T__9 = 10, T__10 = 11, T__11 = 12, EQ = 13, NE = 14, 
+    LT = 15, LTQ = 16, GT = 17, GTQ = 18, IDENTIFIER = 19, EOL = 20, INT = 21, 
+    WHITESPACE = 22
   };
 
   enum {
     RuleProgram = 0, RuleStatement = 1, RuleReturnStatement = 2, RuleIfStatement = 3, 
-    RuleIfBlock = 4, RuleBlock = 5, RuleExpression = 6
+    RuleIfBlock = 4, RuleBlock = 5, RuleWhileStatement = 6, RuleExpression = 7
   };
 
   explicit promiParser(antlr4::TokenStream *input);
@@ -38,6 +39,7 @@ public:
   class IfStatementContext;
   class IfBlockContext;
   class BlockContext;
+  class WhileStatementContext;
   class ExpressionContext; 
 
   class  ProgramContext : public antlr4::ParserRuleContext {
@@ -63,6 +65,7 @@ public:
     antlr4::tree::TerminalNode *EOL();
     ReturnStatementContext *returnStatement();
     IfStatementContext *ifStatement();
+    WhileStatementContext *whileStatement();
 
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
@@ -118,7 +121,8 @@ public:
   public:
     BlockContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    StatementContext *statement();
+    std::vector<StatementContext *> statement();
+    StatementContext* statement(size_t i);
 
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
@@ -126,6 +130,22 @@ public:
   };
 
   BlockContext* block();
+
+  class  WhileStatementContext : public antlr4::ParserRuleContext {
+  public:
+    promiParser::ExpressionContext *cond = nullptr;
+    promiParser::BlockContext *blk = nullptr;
+    WhileStatementContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    ExpressionContext *expression();
+    BlockContext *block();
+
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  WhileStatementContext* whileStatement();
 
   class  ExpressionContext : public antlr4::ParserRuleContext {
   public:

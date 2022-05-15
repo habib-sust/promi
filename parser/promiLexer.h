@@ -13,8 +13,9 @@ class  promiLexer : public antlr4::Lexer {
 public:
   enum {
     T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
-    T__7 = 8, T__8 = 9, T__9 = 10, T__10 = 11, EQ = 12, NE = 13, LT = 14, 
-    LTQ = 15, GT = 16, GTQ = 17, IDENTIFIER = 18, EOL = 19, INT = 20, WHITESPACE = 21
+    T__7 = 8, T__8 = 9, T__9 = 10, T__10 = 11, T__11 = 12, EQ = 13, NE = 14, 
+    LT = 15, LTQ = 16, GT = 17, GTQ = 18, IDENTIFIER = 19, EOL = 20, INT = 21, 
+    WHITESPACE = 22
   };
 
   explicit promiLexer(antlr4::CharStream *input);

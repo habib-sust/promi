@@ -5,12 +5,15 @@ program:  (statement)* EOF;
 statement: expression EOL
             | returnStatement EOL
             | ifStatement
+            | whileStatement
             ;
 returnStatement: 'return' expr=expression;
 
 ifStatement: ifBlock;
 ifBlock: 'if' '(' cond=expression ')' blk=block;
-block: '{' (statement) '}';
+block: '{' (statement)* '}';
+
+whileStatement: 'while' '(' cond=expression ')' blk=block;
 
 expression:	left=expression op=('*'|'/') right=expression         #mulSubExpression
     | left=expression op=('+'|'-') right=expression               #addDivExpression
