@@ -77,6 +77,13 @@ build CMakeFiles/promi.dir/main.cpp.o: CXX_COMPILER__promi_Debug /Users/habib/pr
   OBJECT_DIR = CMakeFiles/promi.dir
   OBJECT_FILE_DIR = CMakeFiles/promi.dir
 
+build CMakeFiles/promi.dir/promiVisitorImpl.cpp.o: CXX_COMPILER__promi_Debug /Users/habib/promilang/promi/promiVisitorImpl.cpp || cmake_object_order_depends_target_promi
+  DEP_FILE = CMakeFiles/promi.dir/promiVisitorImpl.cpp.o.d
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk -std=gnu++14
+  INCLUDES = -I/usr/local/include/antlr4-runtime
+  OBJECT_DIR = CMakeFiles/promi.dir
+  OBJECT_FILE_DIR = CMakeFiles/promi.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target promi
@@ -85,7 +92,7 @@ build CMakeFiles/promi.dir/main.cpp.o: CXX_COMPILER__promi_Debug /Users/habib/pr
 #############################################
 # Link the executable promi
 
-build promi: CXX_EXECUTABLE_LINKER__promi_Debug CMakeFiles/promi.dir/parser/promiLexer.cpp.o CMakeFiles/promi.dir/parser/promiParser.cpp.o CMakeFiles/promi.dir/parser/promiVisitor.cpp.o CMakeFiles/promi.dir/main.cpp.o | /usr/local/lib/libantlr4-runtime.a
+build promi: CXX_EXECUTABLE_LINKER__promi_Debug CMakeFiles/promi.dir/parser/promiLexer.cpp.o CMakeFiles/promi.dir/parser/promiParser.cpp.o CMakeFiles/promi.dir/parser/promiVisitor.cpp.o CMakeFiles/promi.dir/main.cpp.o CMakeFiles/promi.dir/promiVisitorImpl.cpp.o | /usr/local/lib/libantlr4-runtime.a
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk
   LINK_LIBRARIES = /usr/local/lib/libantlr4-runtime.a  -framework  CoreFoundation
   OBJECT_DIR = CMakeFiles/promi.dir

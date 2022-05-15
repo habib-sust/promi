@@ -2,10 +2,10 @@ grammar promi;
 
 program:  (expression EOL)* ;
 
-expression:	expression ('*'|'/') expression
-    |	expression ('+'|'-') expression
-    |	INT
-    |	'(' expression ')'
+expression:	expression ('*'|'/') expression  #mulSubExpression
+    |	expression ('+'|'-') expression      #addDivExpression
+    |	INT                                  #primitiveExpression
+    |	'(' expression ')'                   #parenEnclosedExpression
     ;
 
 EOL : ';' ;

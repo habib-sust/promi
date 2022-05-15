@@ -19,7 +19,19 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitExpression(promiParser::ExpressionContext *ctx) override {
+  virtual antlrcpp::Any visitPrimitiveExpression(promiParser::PrimitiveExpressionContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitParenEnclosedExpression(promiParser::ParenEnclosedExpressionContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitAddDivExpression(promiParser::AddDivExpressionContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitMulSubExpression(promiParser::MulSubExpressionContext *ctx) override {
     return visitChildren(ctx);
   }
 

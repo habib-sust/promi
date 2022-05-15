@@ -21,7 +21,13 @@ public:
    */
     virtual antlrcpp::Any visitProgram(promiParser::ProgramContext *context) = 0;
 
-    virtual antlrcpp::Any visitExpression(promiParser::ExpressionContext *context) = 0;
+    virtual antlrcpp::Any visitPrimitiveExpression(promiParser::PrimitiveExpressionContext *context) = 0;
+
+    virtual antlrcpp::Any visitParenEnclosedExpression(promiParser::ParenEnclosedExpressionContext *context) = 0;
+
+    virtual antlrcpp::Any visitAddDivExpression(promiParser::AddDivExpressionContext *context) = 0;
+
+    virtual antlrcpp::Any visitMulSubExpression(promiParser::MulSubExpressionContext *context) = 0;
 
 
 };

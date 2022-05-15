@@ -111,31 +111,83 @@ promiParser::ExpressionContext::ExpressionContext(ParserRuleContext *parent, siz
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* promiParser::ExpressionContext::INT() {
-  return getToken(promiParser::INT, 0);
-}
-
-std::vector<promiParser::ExpressionContext *> promiParser::ExpressionContext::expression() {
-  return getRuleContexts<promiParser::ExpressionContext>();
-}
-
-promiParser::ExpressionContext* promiParser::ExpressionContext::expression(size_t i) {
-  return getRuleContext<promiParser::ExpressionContext>(i);
-}
-
 
 size_t promiParser::ExpressionContext::getRuleIndex() const {
   return promiParser::RuleExpression;
 }
 
+void promiParser::ExpressionContext::copyFrom(ExpressionContext *ctx) {
+  ParserRuleContext::copyFrom(ctx);
+}
 
-antlrcpp::Any promiParser::ExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+//----------------- PrimitiveExpressionContext ------------------------------------------------------------------
+
+tree::TerminalNode* promiParser::PrimitiveExpressionContext::INT() {
+  return getToken(promiParser::INT, 0);
+}
+
+promiParser::PrimitiveExpressionContext::PrimitiveExpressionContext(ExpressionContext *ctx) { copyFrom(ctx); }
+
+
+antlrcpp::Any promiParser::PrimitiveExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<promiVisitor*>(visitor))
-    return parserVisitor->visitExpression(this);
+    return parserVisitor->visitPrimitiveExpression(this);
   else
     return visitor->visitChildren(this);
 }
+//----------------- ParenEnclosedExpressionContext ------------------------------------------------------------------
 
+promiParser::ExpressionContext* promiParser::ParenEnclosedExpressionContext::expression() {
+  return getRuleContext<promiParser::ExpressionContext>(0);
+}
+
+promiParser::ParenEnclosedExpressionContext::ParenEnclosedExpressionContext(ExpressionContext *ctx) { copyFrom(ctx); }
+
+
+antlrcpp::Any promiParser::ParenEnclosedExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<promiVisitor*>(visitor))
+    return parserVisitor->visitParenEnclosedExpression(this);
+  else
+    return visitor->visitChildren(this);
+}
+//----------------- AddDivExpressionContext ------------------------------------------------------------------
+
+std::vector<promiParser::ExpressionContext *> promiParser::AddDivExpressionContext::expression() {
+  return getRuleContexts<promiParser::ExpressionContext>();
+}
+
+promiParser::ExpressionContext* promiParser::AddDivExpressionContext::expression(size_t i) {
+  return getRuleContext<promiParser::ExpressionContext>(i);
+}
+
+promiParser::AddDivExpressionContext::AddDivExpressionContext(ExpressionContext *ctx) { copyFrom(ctx); }
+
+
+antlrcpp::Any promiParser::AddDivExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<promiVisitor*>(visitor))
+    return parserVisitor->visitAddDivExpression(this);
+  else
+    return visitor->visitChildren(this);
+}
+//----------------- MulSubExpressionContext ------------------------------------------------------------------
+
+std::vector<promiParser::ExpressionContext *> promiParser::MulSubExpressionContext::expression() {
+  return getRuleContexts<promiParser::ExpressionContext>();
+}
+
+promiParser::ExpressionContext* promiParser::MulSubExpressionContext::expression(size_t i) {
+  return getRuleContext<promiParser::ExpressionContext>(i);
+}
+
+promiParser::MulSubExpressionContext::MulSubExpressionContext(ExpressionContext *ctx) { copyFrom(ctx); }
+
+
+antlrcpp::Any promiParser::MulSubExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<promiVisitor*>(visitor))
+    return parserVisitor->visitMulSubExpression(this);
+  else
+    return visitor->visitChildren(this);
+}
 
 promiParser::ExpressionContext* promiParser::expression() {
    return expression(0);
@@ -166,12 +218,19 @@ promiParser::ExpressionContext* promiParser::expression(int precedence) {
     _errHandler->sync(this);
     switch (_input->LA(1)) {
       case promiParser::INT: {
+        _localctx = _tracker.createInstance<PrimitiveExpressionContext>(_localctx);
+        _ctx = _localctx;
+        previousContext = _localctx;
+
         setState(13);
         match(promiParser::INT);
         break;
       }
 
       case promiParser::T__4: {
+        _localctx = _tracker.createInstance<ParenEnclosedExpressionContext>(_localctx);
+        _ctx = _localctx;
+        previousContext = _localctx;
         setState(14);
         match(promiParser::T__4);
         setState(15);
@@ -197,8 +256,9 @@ promiParser::ExpressionContext* promiParser::expression(int precedence) {
         _errHandler->sync(this);
         switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 2, _ctx)) {
         case 1: {
-          _localctx = _tracker.createInstance<ExpressionContext>(parentContext, parentState);
-          pushNewRecursionContext(_localctx, startState, RuleExpression);
+          auto newContext = _tracker.createInstance<MulSubExpressionContext>(_tracker.createInstance<ExpressionContext>(parentContext, parentState));
+          _localctx = newContext;
+          pushNewRecursionContext(newContext, startState, RuleExpression);
           setState(20);
 
           if (!(precpred(_ctx, 4))) throw FailedPredicateException(this, "precpred(_ctx, 4)");
@@ -219,8 +279,9 @@ promiParser::ExpressionContext* promiParser::expression(int precedence) {
         }
 
         case 2: {
-          _localctx = _tracker.createInstance<ExpressionContext>(parentContext, parentState);
-          pushNewRecursionContext(_localctx, startState, RuleExpression);
+          auto newContext = _tracker.createInstance<AddDivExpressionContext>(_tracker.createInstance<ExpressionContext>(parentContext, parentState));
+          _localctx = newContext;
+          pushNewRecursionContext(newContext, startState, RuleExpression);
           setState(23);
 
           if (!(precpred(_ctx, 3))) throw FailedPredicateException(this, "precpred(_ctx, 3)");

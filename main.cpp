@@ -3,7 +3,8 @@
 #include "antlr4-runtime.h"
 #include "parser/promiLexer.h"
 #include "parser/promiParser.h"
-#include "parser/promiBaseVisitor.h"
+//#include "parser/promiBaseVisitor.h"
+#include "promiVisitorImpl.h"
 
 using namespace antlr4;
 
@@ -17,7 +18,7 @@ int main(int argc, const char* argv[]) {
 
     tree::ParseTree *tree = parser.program();
 
-    std::unique_ptr<promiBaseVisitor> v = std::make_unique<promiBaseVisitor>();
+    std::unique_ptr<promiVisitorImpl> v = std::make_unique<promiVisitorImpl>();
     v->visit(tree);
 
     return 0;

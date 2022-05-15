@@ -27,7 +27,7 @@ add_executable(promi
         parser/promiParser.cpp
         parser/promiVisitor.cpp
         main.cpp
-        )
+        promiVisitorImpl.cpp promiVisitorImpl.h)
 
 add_dependencies(promi antlr4_static)
 target_link_libraries(promi PRIVATE antlr4_static)
