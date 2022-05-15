@@ -93,6 +93,7 @@ public:
   public:
     ParenEnclosedExpressionContext(ExpressionContext *ctx);
 
+    promiParser::ExpressionContext *expr = nullptr;
     ExpressionContext *expression();
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
@@ -115,6 +116,9 @@ public:
   public:
     MulSubExpressionContext(ExpressionContext *ctx);
 
+    promiParser::ExpressionContext *left = nullptr;
+    antlr4::Token *op = nullptr;
+    promiParser::ExpressionContext *right = nullptr;
     std::vector<ExpressionContext *> expression();
     ExpressionContext* expression(size_t i);
 

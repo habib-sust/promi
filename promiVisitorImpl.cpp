@@ -46,3 +46,30 @@ antlrcpp::Any promiVisitorImpl::visitProgram(promiParser::ProgramContext *ctx) {
     promiBaseVisitor::visitProgram(ctx);
     return return_value_;
 }
+
+antlrcpp::Any promiVisitorImpl::visitMulSubExpression(promiParser::MulSubExpressionContext *ctx) {
+    auto left = visit(ctx->left).as<int>();
+    auto op = ctx->op->getText();
+    auto right = visit(ctx->right).as<int>();
+
+    assert(op.length() == 1);
+
+    int result = 0;
+
+    switch(op[0]) {
+        case '*':
+            result = left * right;
+            break;
+        case '/':
+            result = left / right; //TODO: handle divided by zero
+            break;
+        default:
+            assert(false);
+    }
+
+    return result;
+}
+
+antlrcpp::Any promiVisitorImpl::visitParenEnclosedExpression(promiParser::ParenEnclosedExpressionContext *ctx) {
+    return visit(ctx->expr).as<int>();
+}

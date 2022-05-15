@@ -12,6 +12,8 @@ class promiVisitorImpl: public promiBaseVisitor {
     antlrcpp::Any visitPrimitiveExpression(promiParser::PrimitiveExpressionContext *ctx) override;
     antlrcpp::Any visitAddDivExpression(promiParser::AddDivExpressionContext *ctx) override;
     antlrcpp::Any visitReturnStatement(promiParser::ReturnStatementContext *ctx) override;
+    antlrcpp::Any visitMulSubExpression(promiParser::MulSubExpressionContext *ctx) override;
+    antlrcpp::Any visitParenEnclosedExpression(promiParser::ParenEnclosedExpressionContext *ctx) override;
 
 private:
     int return_value_;

@@ -319,7 +319,7 @@ promiParser::ExpressionContext* promiParser::expression(int precedence) {
         setState(24);
         match(promiParser::T__5);
         setState(25);
-        expression(0);
+        antlrcpp::downCast<ParenEnclosedExpressionContext *>(_localctx)->expr = expression(0);
         setState(26);
         match(promiParser::T__6);
         break;
@@ -343,23 +343,25 @@ promiParser::ExpressionContext* promiParser::expression(int precedence) {
         case 1: {
           auto newContext = _tracker.createInstance<MulSubExpressionContext>(_tracker.createInstance<ExpressionContext>(parentContext, parentState));
           _localctx = newContext;
+          newContext->left = previousContext;
           pushNewRecursionContext(newContext, startState, RuleExpression);
           setState(30);
 
           if (!(precpred(_ctx, 4))) throw FailedPredicateException(this, "precpred(_ctx, 4)");
           setState(31);
+          antlrcpp::downCast<MulSubExpressionContext *>(_localctx)->op = _input->LT(1);
           _la = _input->LA(1);
           if (!(_la == promiParser::T__1
 
           || _la == promiParser::T__2)) {
-          _errHandler->recoverInline(this);
+            antlrcpp::downCast<MulSubExpressionContext *>(_localctx)->op = _errHandler->recoverInline(this);
           }
           else {
             _errHandler->reportMatch(this);
             consume();
           }
           setState(32);
-          expression(5);
+          antlrcpp::downCast<MulSubExpressionContext *>(_localctx)->right = expression(5);
           break;
         }
 
