@@ -19,7 +19,8 @@ int main(int argc, const char* argv[]) {
     tree::ParseTree *tree = parser.program();
 
     std::unique_ptr<promiVisitorImpl> v = std::make_unique<promiVisitorImpl>();
-    v->visit(tree);
+    auto result = v->visit(tree);
+    std::cout << result.as<int>() << std::endl;
 
     return 0;
 }

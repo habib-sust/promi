@@ -1,11 +1,13 @@
 grammar promi;
 
-program:  (expression EOL)* EOF;
+program:  (expression EOL | returnStatement EOL)* EOF;
 
-expression:	expression ('*'|'/') expression  #mulSubExpression
-    |	left=expression op=('+'|'-') right=expression      #addDivExpression
-    |	INT                                  #primitiveExpression
-    |	'(' expression ')'                   #parenEnclosedExpression
+returnStatement: 'return' expr=expression;
+
+expression:	expression ('*'|'/') expression             #mulSubExpression
+    |	left=expression op=('+'|'-') right=expression   #addDivExpression
+    |	INT                                             #primitiveExpression
+    |	'(' expression ')'                              #parenEnclosedExpression
     ;
 
 EOL : ';' ;

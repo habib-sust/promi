@@ -57,6 +57,14 @@ tree::TerminalNode* promiParser::ProgramContext::EOL(size_t i) {
   return getToken(promiParser::EOL, i);
 }
 
+std::vector<promiParser::ReturnStatementContext *> promiParser::ProgramContext::returnStatement() {
+  return getRuleContexts<promiParser::ReturnStatementContext>();
+}
+
+promiParser::ReturnStatementContext* promiParser::ProgramContext::returnStatement(size_t i) {
+  return getRuleContext<promiParser::ReturnStatementContext>(i);
+}
+
 
 size_t promiParser::ProgramContext::getRuleIndex() const {
   return promiParser::RuleProgram;
@@ -84,22 +92,93 @@ promiParser::ProgramContext* promiParser::program() {
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(9);
+    setState(14);
     _errHandler->sync(this);
     _la = _input->LA(1);
-    while (_la == promiParser::T__4
+    while ((((_la & ~ 0x3fULL) == 0) &&
+      ((1ULL << _la) & ((1ULL << promiParser::T__0)
+      | (1ULL << promiParser::T__5)
+      | (1ULL << promiParser::INT))) != 0)) {
+      setState(12);
+      _errHandler->sync(this);
+      switch (_input->LA(1)) {
+        case promiParser::T__5:
+        case promiParser::INT: {
+          setState(6);
+          expression(0);
+          setState(7);
+          match(promiParser::EOL);
+          break;
+        }
 
-    || _la == promiParser::INT) {
-      setState(4);
-      expression(0);
-      setState(5);
-      match(promiParser::EOL);
-      setState(11);
+        case promiParser::T__0: {
+          setState(9);
+          returnStatement();
+          setState(10);
+          match(promiParser::EOL);
+          break;
+        }
+
+      default:
+        throw NoViableAltException(this);
+      }
+      setState(16);
       _errHandler->sync(this);
       _la = _input->LA(1);
     }
-    setState(12);
+    setState(17);
     match(promiParser::EOF);
+   
+  }
+  catch (RecognitionException &e) {
+    _errHandler->reportError(this, e);
+    _localctx->exception = std::current_exception();
+    _errHandler->recover(this, _localctx->exception);
+  }
+
+  return _localctx;
+}
+
+//----------------- ReturnStatementContext ------------------------------------------------------------------
+
+promiParser::ReturnStatementContext::ReturnStatementContext(ParserRuleContext *parent, size_t invokingState)
+  : ParserRuleContext(parent, invokingState) {
+}
+
+promiParser::ExpressionContext* promiParser::ReturnStatementContext::expression() {
+  return getRuleContext<promiParser::ExpressionContext>(0);
+}
+
+
+size_t promiParser::ReturnStatementContext::getRuleIndex() const {
+  return promiParser::RuleReturnStatement;
+}
+
+
+antlrcpp::Any promiParser::ReturnStatementContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<promiVisitor*>(visitor))
+    return parserVisitor->visitReturnStatement(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+promiParser::ReturnStatementContext* promiParser::returnStatement() {
+  ReturnStatementContext *_localctx = _tracker.createInstance<ReturnStatementContext>(_ctx, getState());
+  enterRule(_localctx, 2, promiParser::RuleReturnStatement);
+
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
+  auto onExit = finally([=] {
+#endif
+    exitRule();
+  });
+  try {
+    enterOuterAlt(_localctx, 1);
+    setState(19);
+    match(promiParser::T__0);
+    setState(20);
+    antlrcpp::downCast<ReturnStatementContext *>(_localctx)->expr = expression(0);
    
   }
   catch (RecognitionException &e) {
@@ -205,8 +284,8 @@ promiParser::ExpressionContext* promiParser::expression(int precedence) {
   promiParser::ExpressionContext *_localctx = _tracker.createInstance<ExpressionContext>(_ctx, parentState);
   promiParser::ExpressionContext *previousContext = _localctx;
   (void)previousContext; // Silence compiler, in case the context is not used by generated code.
-  size_t startState = 2;
-  enterRecursionRule(_localctx, 2, promiParser::RuleExpression, precedence);
+  size_t startState = 4;
+  enterRecursionRule(_localctx, 4, promiParser::RuleExpression, precedence);
 
     size_t _la = 0;
 
@@ -220,7 +299,7 @@ promiParser::ExpressionContext* promiParser::expression(int precedence) {
   try {
     size_t alt;
     enterOuterAlt(_localctx, 1);
-    setState(20);
+    setState(28);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
       case promiParser::INT: {
@@ -228,21 +307,21 @@ promiParser::ExpressionContext* promiParser::expression(int precedence) {
         _ctx = _localctx;
         previousContext = _localctx;
 
-        setState(15);
+        setState(23);
         match(promiParser::INT);
         break;
       }
 
-      case promiParser::T__4: {
+      case promiParser::T__5: {
         _localctx = _tracker.createInstance<ParenEnclosedExpressionContext>(_localctx);
         _ctx = _localctx;
         previousContext = _localctx;
-        setState(16);
-        match(promiParser::T__4);
-        setState(17);
-        expression(0);
-        setState(18);
+        setState(24);
         match(promiParser::T__5);
+        setState(25);
+        expression(0);
+        setState(26);
+        match(promiParser::T__6);
         break;
       }
 
@@ -250,36 +329,36 @@ promiParser::ExpressionContext* promiParser::expression(int precedence) {
       throw NoViableAltException(this);
     }
     _ctx->stop = _input->LT(-1);
-    setState(30);
+    setState(38);
     _errHandler->sync(this);
-    alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 3, _ctx);
+    alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 4, _ctx);
     while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER) {
       if (alt == 1) {
         if (!_parseListeners.empty())
           triggerExitRuleEvent();
         previousContext = _localctx;
-        setState(28);
+        setState(36);
         _errHandler->sync(this);
-        switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 2, _ctx)) {
+        switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 3, _ctx)) {
         case 1: {
           auto newContext = _tracker.createInstance<MulSubExpressionContext>(_tracker.createInstance<ExpressionContext>(parentContext, parentState));
           _localctx = newContext;
           pushNewRecursionContext(newContext, startState, RuleExpression);
-          setState(22);
+          setState(30);
 
           if (!(precpred(_ctx, 4))) throw FailedPredicateException(this, "precpred(_ctx, 4)");
-          setState(23);
+          setState(31);
           _la = _input->LA(1);
-          if (!(_la == promiParser::T__0
+          if (!(_la == promiParser::T__1
 
-          || _la == promiParser::T__1)) {
+          || _la == promiParser::T__2)) {
           _errHandler->recoverInline(this);
           }
           else {
             _errHandler->reportMatch(this);
             consume();
           }
-          setState(24);
+          setState(32);
           expression(5);
           break;
         }
@@ -289,22 +368,22 @@ promiParser::ExpressionContext* promiParser::expression(int precedence) {
           _localctx = newContext;
           newContext->left = previousContext;
           pushNewRecursionContext(newContext, startState, RuleExpression);
-          setState(25);
+          setState(33);
 
           if (!(precpred(_ctx, 3))) throw FailedPredicateException(this, "precpred(_ctx, 3)");
-          setState(26);
+          setState(34);
           antlrcpp::downCast<AddDivExpressionContext *>(_localctx)->op = _input->LT(1);
           _la = _input->LA(1);
-          if (!(_la == promiParser::T__2
+          if (!(_la == promiParser::T__3
 
-          || _la == promiParser::T__3)) {
+          || _la == promiParser::T__4)) {
             antlrcpp::downCast<AddDivExpressionContext *>(_localctx)->op = _errHandler->recoverInline(this);
           }
           else {
             _errHandler->reportMatch(this);
             consume();
           }
-          setState(27);
+          setState(35);
           antlrcpp::downCast<AddDivExpressionContext *>(_localctx)->right = expression(4);
           break;
         }
@@ -313,9 +392,9 @@ promiParser::ExpressionContext* promiParser::expression(int precedence) {
           break;
         } 
       }
-      setState(32);
+      setState(40);
       _errHandler->sync(this);
-      alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 3, _ctx);
+      alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 4, _ctx);
     }
   }
   catch (RecognitionException &e) {
@@ -328,7 +407,7 @@ promiParser::ExpressionContext* promiParser::expression(int precedence) {
 
 bool promiParser::sempred(RuleContext *context, size_t ruleIndex, size_t predicateIndex) {
   switch (ruleIndex) {
-    case 1: return expressionSempred(antlrcpp::downCast<ExpressionContext *>(context), predicateIndex);
+    case 2: return expressionSempred(antlrcpp::downCast<ExpressionContext *>(context), predicateIndex);
 
   default:
     break;
@@ -356,15 +435,15 @@ atn::ATN promiParser::_atn;
 std::vector<uint16_t> promiParser::_serializedATN;
 
 std::vector<std::string> promiParser::_ruleNames = {
-  "program", "expression"
+  "program", "returnStatement", "expression"
 };
 
 std::vector<std::string> promiParser::_literalNames = {
-  "", "'*'", "'/'", "'+'", "'-'", "'('", "')'", "';'"
+  "", "'return'", "'*'", "'/'", "'+'", "'-'", "'('", "')'", "';'"
 };
 
 std::vector<std::string> promiParser::_symbolicNames = {
-  "", "", "", "", "", "", "", "EOL", "INT", "WHITESPACE"
+  "", "", "", "", "", "", "", "", "EOL", "INT", "WHITESPACE"
 };
 
 dfa::Vocabulary promiParser::_vocabulary(_literalNames, _symbolicNames);
@@ -387,30 +466,35 @@ promiParser::Initializer::Initializer() {
 
   static const uint16_t serializedATNSegment0[] = {
     0x3, 0x608b, 0xa72a, 0x8133, 0xb9ed, 0x417c, 0x3be7, 0x7786, 0x5964, 
-       0x3, 0xb, 0x24, 0x4, 0x2, 0x9, 0x2, 0x4, 0x3, 0x9, 0x3, 0x3, 0x2, 
-       0x3, 0x2, 0x3, 0x2, 0x7, 0x2, 0xa, 0xa, 0x2, 0xc, 0x2, 0xe, 0x2, 
-       0xd, 0xb, 0x2, 0x3, 0x2, 0x3, 0x2, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 
-       0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x5, 0x3, 0x17, 0xa, 0x3, 0x3, 0x3, 
-       0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x7, 0x3, 0x1f, 
-       0xa, 0x3, 0xc, 0x3, 0xe, 0x3, 0x22, 0xb, 0x3, 0x3, 0x3, 0x2, 0x3, 
-       0x4, 0x4, 0x2, 0x4, 0x2, 0x4, 0x3, 0x2, 0x3, 0x4, 0x3, 0x2, 0x5, 
-       0x6, 0x2, 0x25, 0x2, 0xb, 0x3, 0x2, 0x2, 0x2, 0x4, 0x16, 0x3, 0x2, 
-       0x2, 0x2, 0x6, 0x7, 0x5, 0x4, 0x3, 0x2, 0x7, 0x8, 0x7, 0x9, 0x2, 
-       0x2, 0x8, 0xa, 0x3, 0x2, 0x2, 0x2, 0x9, 0x6, 0x3, 0x2, 0x2, 0x2, 
-       0xa, 0xd, 0x3, 0x2, 0x2, 0x2, 0xb, 0x9, 0x3, 0x2, 0x2, 0x2, 0xb, 
-       0xc, 0x3, 0x2, 0x2, 0x2, 0xc, 0xe, 0x3, 0x2, 0x2, 0x2, 0xd, 0xb, 
-       0x3, 0x2, 0x2, 0x2, 0xe, 0xf, 0x7, 0x2, 0x2, 0x3, 0xf, 0x3, 0x3, 
-       0x2, 0x2, 0x2, 0x10, 0x11, 0x8, 0x3, 0x1, 0x2, 0x11, 0x17, 0x7, 0xa, 
-       0x2, 0x2, 0x12, 0x13, 0x7, 0x7, 0x2, 0x2, 0x13, 0x14, 0x5, 0x4, 0x3, 
-       0x2, 0x14, 0x15, 0x7, 0x8, 0x2, 0x2, 0x15, 0x17, 0x3, 0x2, 0x2, 0x2, 
-       0x16, 0x10, 0x3, 0x2, 0x2, 0x2, 0x16, 0x12, 0x3, 0x2, 0x2, 0x2, 0x17, 
-       0x20, 0x3, 0x2, 0x2, 0x2, 0x18, 0x19, 0xc, 0x6, 0x2, 0x2, 0x19, 0x1a, 
-       0x9, 0x2, 0x2, 0x2, 0x1a, 0x1f, 0x5, 0x4, 0x3, 0x7, 0x1b, 0x1c, 0xc, 
-       0x5, 0x2, 0x2, 0x1c, 0x1d, 0x9, 0x3, 0x2, 0x2, 0x1d, 0x1f, 0x5, 0x4, 
-       0x3, 0x6, 0x1e, 0x18, 0x3, 0x2, 0x2, 0x2, 0x1e, 0x1b, 0x3, 0x2, 0x2, 
-       0x2, 0x1f, 0x22, 0x3, 0x2, 0x2, 0x2, 0x20, 0x1e, 0x3, 0x2, 0x2, 0x2, 
-       0x20, 0x21, 0x3, 0x2, 0x2, 0x2, 0x21, 0x5, 0x3, 0x2, 0x2, 0x2, 0x22, 
-       0x20, 0x3, 0x2, 0x2, 0x2, 0x6, 0xb, 0x16, 0x1e, 0x20, 
+       0x3, 0xc, 0x2c, 0x4, 0x2, 0x9, 0x2, 0x4, 0x3, 0x9, 0x3, 0x4, 0x4, 
+       0x9, 0x4, 0x3, 0x2, 0x3, 0x2, 0x3, 0x2, 0x3, 0x2, 0x3, 0x2, 0x3, 
+       0x2, 0x7, 0x2, 0xf, 0xa, 0x2, 0xc, 0x2, 0xe, 0x2, 0x12, 0xb, 0x2, 
+       0x3, 0x2, 0x3, 0x2, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x4, 0x3, 
+       0x4, 0x3, 0x4, 0x3, 0x4, 0x3, 0x4, 0x3, 0x4, 0x5, 0x4, 0x1f, 0xa, 
+       0x4, 0x3, 0x4, 0x3, 0x4, 0x3, 0x4, 0x3, 0x4, 0x3, 0x4, 0x3, 0x4, 
+       0x7, 0x4, 0x27, 0xa, 0x4, 0xc, 0x4, 0xe, 0x4, 0x2a, 0xb, 0x4, 0x3, 
+       0x4, 0x2, 0x3, 0x6, 0x5, 0x2, 0x4, 0x6, 0x2, 0x4, 0x3, 0x2, 0x4, 
+       0x5, 0x3, 0x2, 0x6, 0x7, 0x2, 0x2d, 0x2, 0x10, 0x3, 0x2, 0x2, 0x2, 
+       0x4, 0x15, 0x3, 0x2, 0x2, 0x2, 0x6, 0x1e, 0x3, 0x2, 0x2, 0x2, 0x8, 
+       0x9, 0x5, 0x6, 0x4, 0x2, 0x9, 0xa, 0x7, 0xa, 0x2, 0x2, 0xa, 0xf, 
+       0x3, 0x2, 0x2, 0x2, 0xb, 0xc, 0x5, 0x4, 0x3, 0x2, 0xc, 0xd, 0x7, 
+       0xa, 0x2, 0x2, 0xd, 0xf, 0x3, 0x2, 0x2, 0x2, 0xe, 0x8, 0x3, 0x2, 
+       0x2, 0x2, 0xe, 0xb, 0x3, 0x2, 0x2, 0x2, 0xf, 0x12, 0x3, 0x2, 0x2, 
+       0x2, 0x10, 0xe, 0x3, 0x2, 0x2, 0x2, 0x10, 0x11, 0x3, 0x2, 0x2, 0x2, 
+       0x11, 0x13, 0x3, 0x2, 0x2, 0x2, 0x12, 0x10, 0x3, 0x2, 0x2, 0x2, 0x13, 
+       0x14, 0x7, 0x2, 0x2, 0x3, 0x14, 0x3, 0x3, 0x2, 0x2, 0x2, 0x15, 0x16, 
+       0x7, 0x3, 0x2, 0x2, 0x16, 0x17, 0x5, 0x6, 0x4, 0x2, 0x17, 0x5, 0x3, 
+       0x2, 0x2, 0x2, 0x18, 0x19, 0x8, 0x4, 0x1, 0x2, 0x19, 0x1f, 0x7, 0xb, 
+       0x2, 0x2, 0x1a, 0x1b, 0x7, 0x8, 0x2, 0x2, 0x1b, 0x1c, 0x5, 0x6, 0x4, 
+       0x2, 0x1c, 0x1d, 0x7, 0x9, 0x2, 0x2, 0x1d, 0x1f, 0x3, 0x2, 0x2, 0x2, 
+       0x1e, 0x18, 0x3, 0x2, 0x2, 0x2, 0x1e, 0x1a, 0x3, 0x2, 0x2, 0x2, 0x1f, 
+       0x28, 0x3, 0x2, 0x2, 0x2, 0x20, 0x21, 0xc, 0x6, 0x2, 0x2, 0x21, 0x22, 
+       0x9, 0x2, 0x2, 0x2, 0x22, 0x27, 0x5, 0x6, 0x4, 0x7, 0x23, 0x24, 0xc, 
+       0x5, 0x2, 0x2, 0x24, 0x25, 0x9, 0x3, 0x2, 0x2, 0x25, 0x27, 0x5, 0x6, 
+       0x4, 0x6, 0x26, 0x20, 0x3, 0x2, 0x2, 0x2, 0x26, 0x23, 0x3, 0x2, 0x2, 
+       0x2, 0x27, 0x2a, 0x3, 0x2, 0x2, 0x2, 0x28, 0x26, 0x3, 0x2, 0x2, 0x2, 
+       0x28, 0x29, 0x3, 0x2, 0x2, 0x2, 0x29, 0x7, 0x3, 0x2, 0x2, 0x2, 0x2a, 
+       0x28, 0x3, 0x2, 0x2, 0x2, 0x7, 0xe, 0x10, 0x1e, 0x26, 0x28, 
   };
 
   _serializedATN.insert(_serializedATN.end(), serializedATNSegment0,

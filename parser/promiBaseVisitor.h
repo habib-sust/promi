@@ -19,6 +19,10 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitReturnStatement(promiParser::ReturnStatementContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitPrimitiveExpression(promiParser::PrimitiveExpressionContext *ctx) override {
     return visitChildren(ctx);
   }

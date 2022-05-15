@@ -21,6 +21,8 @@ public:
    */
     virtual antlrcpp::Any visitProgram(promiParser::ProgramContext *context) = 0;
 
+    virtual antlrcpp::Any visitReturnStatement(promiParser::ReturnStatementContext *context) = 0;
+
     virtual antlrcpp::Any visitPrimitiveExpression(promiParser::PrimitiveExpressionContext *context) = 0;
 
     virtual antlrcpp::Any visitParenEnclosedExpression(promiParser::ParenEnclosedExpressionContext *context) = 0;

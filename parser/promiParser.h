@@ -12,12 +12,12 @@
 class  promiParser : public antlr4::Parser {
 public:
   enum {
-    T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, EOL = 7, 
-    INT = 8, WHITESPACE = 9
+    T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
+    EOL = 8, INT = 9, WHITESPACE = 10
   };
 
   enum {
-    RuleProgram = 0, RuleExpression = 1
+    RuleProgram = 0, RuleReturnStatement = 1, RuleExpression = 2
   };
 
   explicit promiParser(antlr4::TokenStream *input);
@@ -31,6 +31,7 @@ public:
 
 
   class ProgramContext;
+  class ReturnStatementContext;
   class ExpressionContext; 
 
   class  ProgramContext : public antlr4::ParserRuleContext {
@@ -42,6 +43,8 @@ public:
     ExpressionContext* expression(size_t i);
     std::vector<antlr4::tree::TerminalNode *> EOL();
     antlr4::tree::TerminalNode* EOL(size_t i);
+    std::vector<ReturnStatementContext *> returnStatement();
+    ReturnStatementContext* returnStatement(size_t i);
 
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
@@ -49,6 +52,20 @@ public:
   };
 
   ProgramContext* program();
+
+  class  ReturnStatementContext : public antlr4::ParserRuleContext {
+  public:
+    promiParser::ExpressionContext *expr = nullptr;
+    ReturnStatementContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    ExpressionContext *expression();
+
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  ReturnStatementContext* returnStatement();
 
   class  ExpressionContext : public antlr4::ParserRuleContext {
   public:
